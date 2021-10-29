@@ -40,7 +40,7 @@ function Admin() {
               </div>
               <button className="Login" onClick={styleBtn} id="btn">Log in</button>
             </form>
-             <p className="login-footer">Don’t have an account?<a href="#">Sign up</a> </p>
+             <p className="login-footer">Don’t have an account?<a>Sign up</a></p>
           </div>
         </div>
       </div>
