@@ -1,11 +1,13 @@
-.parent-box {
+.parent-box1 {
     width: 100vw;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #63a4ff;
-    background-image: linear-gradient(315deg, #63a4ff 0%, #83eaf1 74%);
+    background-color: #abe9cd;
+    background-image: linear-gradient(315deg, #abe9cd 0%, #3eadcf 74%);
+    
+
 }
 .admin-box {
     width: 100%;
@@ -19,11 +21,12 @@
 .login-page {
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
     width: 300px;
-    height: 380px;
+    height: 400px;
     margin: 20px 5%;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+    position: relative;
     padding: 10px 25px;
     background-color: #ffffff;
     background-image: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
@@ -46,10 +49,23 @@
 }
 .login-header-text {
     text-align: right;
-    width: 50%;
-    height: 100%;
+    position: absolute;
+    right: 10px;
+    top: 5px;
     color: red;
     cursor: pointer;
+    font-size: 20px;
+    text-decoration: none;
+    transition: color 0.5s;
+    padding: 5px;
+    border-radius: 4px;
+   
+}
+.login-header-text:hover{
+    right: 8px;
+    top: 3px;
+    border: 2px solid red;
+    color: grey;
 }
 
 .login-text {
@@ -69,6 +85,7 @@ span.Inner-text {
     font-size: 24px;
     background: white;
     margin: 10px 0;
+    border: 2px solid white;
     border-radius: 20px;
     transition: all 1s;
     box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
@@ -82,6 +99,7 @@ span.Inner-text {
     background: none;
     outline: none;
     border: none;
+   
 }
 input:active {
     background: none;
@@ -108,10 +126,6 @@ button.Login{
 .clickBtn{
     transform: translateY(-5%) !important;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px !important;
-}
-.login-footer{
-    text-align: center;
-    margin: 20px 0 0 0;
 }
 @media (max-width:800px) {
     .admin-box{
