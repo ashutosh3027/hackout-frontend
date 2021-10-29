@@ -1,18 +1,16 @@
 import React from "react";
-import "./login.css";
+import "../assets/styles/login.css";
 import loginImg from "../assets/img/login-img.svg";
+
 function Admin() {
-    const styleBtn = ()=>{
-        
-        setTimeout(()=>{
-        document.querySelector('#btn').classList.add('clickBtn')
-            
-        }, 0);
-        setTimeout(()=>{
-            document.querySelector('#btn').classList.remove('clickBtn')
-          
-        }, 200);
-    }
+  const styleBtn = ()=>{
+      setTimeout(()=>{
+      document.querySelector('#btn').classList.add('clickBtn')
+      }, 0);
+      setTimeout(()=>{
+          document.querySelector('#btn').classList.remove('clickBtn')
+      }, 200);
+  }
   return (
     <>
       <div className="parent-box">

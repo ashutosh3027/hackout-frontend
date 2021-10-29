@@ -1,6 +1,7 @@
 import React from "react";
-import "./signup.css";
+import "../assets/styles/signup.css";
 import SignUpImg from "../assets/img/SignUp.svg";
+
 export default function SignUp() {
   const styleBtn = () => {
     setTimeout(() => {
