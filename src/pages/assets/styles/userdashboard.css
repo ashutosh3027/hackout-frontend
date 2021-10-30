@@ -1,10 +1,16 @@
 .dashboard-main {
-    max-width: 700px;
-    width: 100%;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    margin: 80px 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: #63a4ff;
+    background-image: linear-gradient(315deg, #63a4ff 0%, #83eaf1 74%);
+    /* position: absolute; */
+    /* left: 50%;
+    top: 80px; */
+    /* transform: translateX(-50%); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .dashboard-main .user-name {
