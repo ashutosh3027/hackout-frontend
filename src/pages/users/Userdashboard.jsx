@@ -1,23 +1,33 @@
 import React, { useState, useEffect } from "react";
-import { user_data } from "../../data";
+// import { user_data } from "../../data";
 import { useHistory } from "react-router-dom";
 import { ImCross } from "react-icons/im";
 import { BsInfoCircle } from "react-icons/bs";
 import { BiRightArrow } from "react-icons/bi";
 import "../assets/styles/userdashboard.css";
+import axios from 'axios'
+import { api } from '../../Api/api'
+import { toast } from 'react-toastify'
 
 function Userdashboard({ match }) {
-  const [search, setsearch] = useState("");
-  const [filteredRequests, setfilteredRequests] = useState(
-    user_data.All_Requests
-  );
-  const [showRequestForm, setshowRequestForm] = useState(false);
-  const [showDetails, setshowDetails] = useState(false);
-  const [prodDetails, setprodDetails] = useState({});
-  const [blur, setblur] = useState(false);
-
-  const history = useHistory();
-  const handleChat = (e) => {
+    const [user_data, setuser_data] = useState({
+        "username": localStorage.getItem("username") || '',
+        "user_id" : localStorage.getItem("user_id") || '',
+        "All_Requests": []
+    })
+    const [search, setsearch] = useState('')
+    const [filteredRequests, setfilteredRequests] = useState([])
+    const [showRequestForm, setshowRequestForm] = useState(false)
+    const [showDetails, setshowDetails] = useState(false)
+    const [prodDetails, setprodDetails] = useState({})
+    const [blur, setblur] = useState(false)
+    const [loading, setloading] = useState(false)
+    const [productName, setproductName] = useState('')
+    const [productLink, setproductLink] = useState('')
+    const [bank, setbank] = useState("ICIC")
+    const history = useHistory()
+  
+    const handleChat = (e) => {
     const chatId = e.target.getAttribute("datakey");
     history.push(`/${match.params.userId}/dashboard/${chatId}`);
   };
@@ -32,6 +42,46 @@ function Userdashboard({ match }) {
     }
     setfilteredRequests(user_data.All_Requests.filter(filterFucntion));
   }, [search]);
+
+  useEffect(async() => {
+    setloading(true)
+    const headers = {"x-access-token": localStorage.getItem("token") || null}
+    await axios.get(`${api}product/user`,headers)
+    .then((res) => {
+        console.log(res)
+        let temp_data = user_data
+        temp_data.All_Requests = res.data.products
+        setuser_data(temp_data)
+        setfilteredRequests(res.data.products)
+        setloading(false)
+    })
+  },[])
+
+  const postProduct = async(req,res) => {
+    setloading(true)
+    const headers = {"x-access-token": localStorage.getItem("token") || null}
+    const body = {product_name: productName,product_link: productLink,bank: bank}
+    await axios.post(`${api}product/add`,body,headers)
+    .then((res) => {
+        if(res.status == 200){
+            toast("Successfully added")
+        }
+        else{
+            toast("Some error occured")
+        }
+    })
+    setloading(false)
+    }
+
+
+    if(loading){
+        return (
+            <div>
+                loading
+            </div>
+        )
+    }
+
 
   return (
     <>
@@ -95,52 +145,38 @@ function Userdashboard({ match }) {
           </div>
         </div>
       </div>
-      {showRequestForm && (
-        <div className="requestForm">
-          <form>
-            <div className="form-head">
-              <h1>REQUEST FORM</h1>
-              <button
-                onClick={() => {
-                  setshowRequestForm(!showRequestForm);
-                  setblur(!blur);
-                }}
-              >
-                <ImCross />
-              </button>
+      {
+            showRequestForm && 
+            <div className="requestForm">
+                <form>
+                    <div className="form-head">
+                        <h1>REQUEST FORM</h1>
+                        <button onClick={() => {setshowRequestForm(!showRequestForm);setblur(!blur)}}><ImCross /></button>
+                    </div>
+                    <div className="field">
+                        <label htmlFor="Name">Product name</label>
+                        <input type="text" name="Name" placeholder="product name" 
+                        onChange = {(e) => {setproductName(e.target.value)}}
+                        required/>
+                    </div>
+                    <div className="field">
+                        <label htmlFor="link">Product link</label>
+                        <input type="text" name="link" placeholder="product link"
+                        onChange = {(e) => {setproductLink(e.target.value)}}
+                        required/>
+                    </div>
+                    <div className="field">
+                        <label htmlFor="bank">Bank</label>
+                        <select name="bank">
+                            <option value="ICICI">ICICI</option>
+                            <option value="SBI">SBI</option>
+                            <option value="AXIS">AXIS</option>
+                        </select>
+                    </div>
+                    <button type="submit" onClick ={postProduct } >submit</button>
+                </form>
             </div>
-            <div className="field">
-              <label htmlFor="Name">Product name</label>
-              <input
-                type="text"
-                name="Name"
-                placeholder="product name"
-                required
-              />
-            </div>
-            <div className="field">
-              <label htmlFor="link">Product link</label>
-              <input
-                type="text"
-                name="link"
-                placeholder="product link"
-                required
-              />
-            </div>
-            <div className="field">
-              <label htmlFor="bank">Bank</label>
-              <select name="bank">
-                <option value="ICICI">ICICI</option>
-                <option value="SBI">SBI</option>
-                <option value="AXIS">AXIS</option>
-              </select>
-            </div>
-            <button type="submit" onSubmit={(e) => e.preventDefault()}>
-              submit
-            </button>
-          </form>
-        </div>
-      )}
+        }
       {showDetails && (
         <div className="prod-details">
           <h1>DETAILS</h1>
