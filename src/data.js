@@ -38,12 +38,21 @@ const admin_data = {
     "requests":[
         {
         "user_id":"ksdcnsdc",
+        "user_name":"crate",
         "product_name": "Head phones",
         "product_link": "Flipkart.com",
         "status": true,
         "bank":"ICICI",
         "chat_id": "aimIswu92",
-        "dealStatus":"In progress"
+        },
+        {
+        "user_id":"ksdcns",
+        "user_name":"james",
+        "product_name": "bags",
+        "product_link": "Flipkart.com",
+        "status": false,
+        "bank":"SBI",
+        "chat_id": "",
         },
     ]
 }
