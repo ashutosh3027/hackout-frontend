@@ -1,7 +1,8 @@
 import React,{useState,useEffect} from 'react'
-import { user_data} from '../../data'
 import '../assets/styles/Chat.css'
 import io from "socket.io-client";
+import axios from 'axios';
+import { api } from '../../Api/api';
 
 let socket;
 const link = 'http://localhost:3001';
@@ -9,10 +10,22 @@ const link = 'http://localhost:3001';
 function Chat({match}) {
     const [messages, setmessages] = useState([])
     const [message, setmessage] = useState("");
+    const [request, setrequest] = useState({"admin_details": {}})
+    const username = localStorage.getItem("username")
 
-    const request = user_data.All_Requests[0]
+
+    useEffect(async() => {
+        const headers = {"x-access-token": localStorage.getItem("token") || null}
+        await axios.get(`${api}product/${match.params.chatId}`,headers)
+        .then((res) => {
+            if(res.status == 200){
+            setrequest(res.data.products[0])
+            }
+        })
+    })
 
     useEffect(() => {
+
         socket = io(link);
         socket.emit("join",match.params.chatId );
     },[]);
@@ -24,7 +37,7 @@ function Chat({match}) {
     })
 
     const sendMessage = () => {
-        const item = { room: match.params.chatId, message , user:user_data.username};
+        const item = { room: match.params.chatId, message , user: username};
         socket.emit("sendMessage", item);
         setmessage("");
     }
@@ -35,7 +48,7 @@ function Chat({match}) {
             <div className="message">
             { messages && 
                 messages.map((item,index) => {
-                    if (item.user === user_data.username){
+                    if (item.user === username){
                         return (
                         <div className="singlemessage" key={index}>
                             <div className="mess-con user" >
@@ -75,7 +88,7 @@ function Chat({match}) {
                 <h1>CHAT</h1>
                 <h3>chat-session-id : {match.params.chatId}</h3>
                 <h3>admin : {request.admin_details.admin_name}</h3>
-                <h3>User : {user_data.username}</h3>
+                <h3>User : {username}</h3>
             </div>
             <div className="productDetails">
                 <h1>DETAILS</h1>

@@ -34,6 +34,8 @@ function Admin() {
       if(res.status === 200){
         toast("Successfull logged in")
         localStorage.setItem("token", res.data.token)
+        localStorage.setItem("username", username)
+        localStorage.setItem("id", res.data._id)
       }
       else{
         toast("some error occured")
