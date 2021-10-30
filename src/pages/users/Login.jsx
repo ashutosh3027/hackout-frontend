@@ -25,7 +25,7 @@ function Admin() {
     }
     await axios.post(`${api}login`, body)
     .then((res) => {
-      if(res.status == 200){
+      if(res.status === 200){
         toast("Successfull logged in")
         localStorage.setItem("token", res.data.token)
       }
@@ -54,13 +54,13 @@ function Admin() {
                 <input type="Text" name="username" id="" 
                 onChange = {(e) => setusername(e.target.value)}
                 placeholder="Username"/>
-              <i class="fa fa-user"></i>
+              <i className="fa fa-user"></i>
               </div>
               <div className="pass login-page-div">
                 <input type="password" name="Password" id=""
                 onChange = {(e) => setpassword(e.target.value)}
                 placeholder="Password" />
-                <i class="fa fa-lock"></i>
+                <i className="fa fa-lock"></i>
               </div>
               <button className="Login" onClick={styleBtn,Login} id="btn">Log in</button>
             </form>

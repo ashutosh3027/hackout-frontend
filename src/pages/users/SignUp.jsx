@@ -27,7 +27,7 @@ export default function SignUp() {
 
     await axios.post(`${api}register/`, body)
     .then((res) => {
-      if(res.status == 201){
+      if(res.status === 201){
         toast("Success fully created account")
         window.location = '/login'
       }
