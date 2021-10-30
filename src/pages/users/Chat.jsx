@@ -15,10 +15,22 @@ function Chat({match}) {
             {
                 chat.Messages.map(item => {
                     if (item.sent_by === "user"){
-                        return <p key={item.id}><em>you : </em>{item.message}</p>
+                        return (
+                        <div className="singlemessage" key={item.id}>
+                            <div className="mess-con user" >
+                                <sender>You</sender>
+                                <p>{item.message}</p>
+                            </div>
+                        </div>);
                     }
                     else{
-                        return <p key={item.id}><em>admin : </em>{item.message}</p>
+                        return (
+                        <div className="singlemessage"  key={item.id}>
+                            <div className="mess-con">
+                                <sender>Admin</sender>
+                                <p>{item.message}</p>
+                            </div>
+                        </div>);
                     }
                 })
             }

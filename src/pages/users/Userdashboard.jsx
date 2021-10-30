@@ -7,18 +7,18 @@ import {BiRightArrow} from 'react-icons/bi'
 import '../assets/styles/userdashboard.css'
 
 function Userdashboard({match}) {
-    const history = useHistory()
-    const handleChat = (e) => {
-        const chatId = e.target.getAttribute("datakey")
-        history.push(`/${match.params.userId}/dashboard/${chatId}`)
-    }
-
     const [search, setsearch] = useState('')
     const [filteredRequests, setfilteredRequests] = useState(user_data.All_Requests)
     const [showRequestForm, setshowRequestForm] = useState(false)
     const [showDetails, setshowDetails] = useState(false)
     const [prodDetails, setprodDetails] = useState({})
     const [blur, setblur] = useState(false)
+
+    const history = useHistory()
+    const handleChat = (e) => {
+        const chatId = e.target.getAttribute("datakey")
+        history.push(`/${match.params.userId}/dashboard/${chatId}`)
+    }
 
     const filterFucntion = ({product_name}) => {
         return product_name.toLowerCase().indexOf(search.toLowerCase().trim()) > -1
