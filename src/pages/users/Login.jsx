@@ -1,15 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import "../assets/styles/login.css";
 import loginImg from "../assets/img/login-img.svg";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import { api } from "../../Api/api";
 
 function Admin() {
-  const styleBtn = ()=>{
+  const [username, setusername] = useState('')
+  const [password, setpassword] = useState('')
+  const styleBtn = (e)=>{
+    e.preventDefault()
       setTimeout(()=>{
       document.querySelector('#btn').classList.add('clickBtn')
       }, 0);
       setTimeout(()=>{
           document.querySelector('#btn').classList.remove('clickBtn')
       }, 200);
+  }
+  const Login = async(e) => {
+    e.preventDefault()
+    const body = {
+      username: username,
+      password: password
+    }
+    await axios.post(`${api}login`, body)
+    .then((res) => {
+      if(res.status == 200){
+        toast("Successfull logged in")
+        localStorage.setItem("token", res.data.token)
+      }
+      else{
+        toast("some error occured")
+      }
+    })
   }
   return (
     <>
@@ -25,21 +48,26 @@ function Admin() {
                   </div>
               </div>
               <p className="login-text">SIGN IN</p> <span className="Inner-text">Sign in to continue</span>
-            <form action="" className="login-form">
+            <form action={Login} className="login-form">
 
               <div className="email  login-page-div">
-                <input type="Text" name="username" id="" placeholder="Username"/>
+                <input type="Text" name="username" id="" 
+                onChange = {(e) => setusername(e.target.value)}
+                placeholder="Username"/>
               <i class="fa fa-user"></i>
               </div>
               <div className="pass login-page-div">
-                <input type="password" name="Password" id="" placeholder="Password" />
+                <input type="password" name="Password" id=""
+                onChange = {(e) => setpassword(e.target.value)}
+                placeholder="Password" />
                 <i class="fa fa-lock"></i>
               </div>
-              <button className="Login" onClick={styleBtn} id="btn">Log in</button>
+              <button className="Login" onClick={styleBtn,Login} id="btn">Log in</button>
             </form>
              <p className="login-footer">Don’t have an account?<a href="#/signUp">Sign up</a> </p>
           </div>
         </div>
+        <ToastContainer />
       </div>
     </>
   );

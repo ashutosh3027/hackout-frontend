@@ -1,12 +1,12 @@
 import React from 'react'
-import { user_data,chat } from '../../data'
+import { admin_data,chat } from '../../data'
 import '../assets/styles/Chat.css'
 
-function Chat({match}) {
+function Adminchat({match}) {
     const checkChat = (req_data) => {
         return req_data.chat_id === match.params.chatId; 
     }
-    const request = user_data.All_Requests.filter(checkChat)[0]
+    const request = admin_data.requests.filter(checkChat)[0]
 
     return (
         <div className="chat-main">
@@ -14,7 +14,7 @@ function Chat({match}) {
             <div className="message">
             {
                 chat.Messages.map(item => {
-                    if (item.sent_by === "user"){
+                    if (item.sent_by === "admin"){
                         return (
                         <div className="singlemessage" key={item.id}>
                             <div className="mess-con user" >
@@ -27,7 +27,7 @@ function Chat({match}) {
                         return (
                         <div className="singlemessage"  key={item.id}>
                             <div className="mess-con">
-                                <sender>Admin</sender>
+                                <sender>User</sender>
                                 <p>{item.message}</p>
                             </div>
                         </div>);
@@ -44,8 +44,8 @@ function Chat({match}) {
             <div className="chat-det">   
                 <h1>CHAT</h1>
                 <h3>chat-session-id : {match.params.chatId}</h3>
-                <h3>admin : {request.admin_details.admin_name}</h3>
-                <h3>User : {user_data.username}</h3>
+                <h3>admin : {admin_data.admin_name}</h3>
+                <h3>admin : {request.user_name}</h3>
             </div>
             <div className="productDetails">
                 <h1>DETAILS</h1>
@@ -59,4 +59,4 @@ function Chat({match}) {
     )
 }
 
-export default Chat
+export default Adminchat

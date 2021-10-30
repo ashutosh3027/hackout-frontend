@@ -1,15 +1,13 @@
 import React,{useState,useEffect} from 'react'
-import {user_data} from '../../data'
+import {admin_data} from '../../data'
 import {useHistory} from 'react-router-dom'
-import {ImCross} from 'react-icons/im'
 import {BsInfoCircle} from 'react-icons/bs'
 import {BiRightArrow} from 'react-icons/bi'
 import '../assets/styles/userdashboard.css'
 
-function Userdashboard({match}) {
+function Admindashboard({match}) {
     const [search, setsearch] = useState('')
-    const [filteredRequests, setfilteredRequests] = useState(user_data.All_Requests)
-    const [showRequestForm, setshowRequestForm] = useState(false)
+    const [filteredRequests, setfilteredRequests] = useState(admin_data.requests)
     const [showDetails, setshowDetails] = useState(false)
     const [prodDetails, setprodDetails] = useState({})
     const [blur, setblur] = useState(false)
@@ -17,7 +15,7 @@ function Userdashboard({match}) {
     const history = useHistory()
     const handleChat = (e) => {
         const chatId = e.target.getAttribute("datakey")
-        history.push(`/${match.params.userId}/dashboard/${chatId}`)
+        history.push(`/admin/${match.params.adminId}/dashboard/${chatId}`)
     }
 
     const filterFucntion = ({product_name}) => {
@@ -26,25 +24,23 @@ function Userdashboard({match}) {
 
     useEffect(() => {
         if(search === ''){
-            setfilteredRequests(user_data.All_Requests);
+            setfilteredRequests(admin_data.requests);
         }
-        setfilteredRequests(user_data.All_Requests.filter(filterFucntion))
+        setfilteredRequests(admin_data.requests.filter(filterFucntion))
     }, [search])
-
     return (
         <>
         <div className={`dashboard-main ${blur ? "mkblr":''}`} >
-            <h1 className="user-name"> Welcome {user_data.username},</h1>
+            <h1 className="user-name"> Welcome {admin_data.admin_name},</h1>
         <div className="filter">
             <input type="text" placeholder="search by product name" onChange={(e) => setsearch(e.target.value)} value={search} />
-            <button onClick={() => {setshowRequestForm(!showRequestForm);setblur(!blur)}}>Request a Product</button>
         </div>
         <div className="userData">
             <div className="requests">
                 { (filteredRequests.length === 0) && <h2 style={{color:"rgb(180 180 180)",textAlign:"center"}}>No requests found!!!</h2> }
                 {
                     filteredRequests.map(request =>  (
-                        <div className="request" key={request.id}>
+                        <div className="request" key={request.user_id}>
                             <div className="req-detail">
                                 <h2>{request.product_name}</h2>
                                 <p className="status">status : <span className={request.status?"success":"fail"}>{request.status?"Accepted":"Pending..."}</span></p>
@@ -53,6 +49,10 @@ function Userdashboard({match}) {
                                 request.status && 
                                 <button className="chat" onClick={handleChat} datakey={request.chat_id}>Chat{'   '} <BiRightArrow /></button>
                             }
+                            {
+                                !request.status &&
+                                <button className="success" style={{backgroundColor:'#007BFF',color:'white',padding:'2px',borderRadius:'2px'}} datakey={request.chat_id}>Approve Request</button>
+                            }
                             <button className="icon" onClick={() => {setshowDetails(!showDetails);setprodDetails(request);setblur(!blur)}}><BsInfoCircle /></button>
                         </div>
                     ))
@@ -60,34 +60,6 @@ function Userdashboard({match}) {
             </div>
         </div>
         </div>
-        {
-            showRequestForm && 
-            <div className="requestForm">
-                <form>
-                    <div className="form-head">
-                        <h1>REQUEST FORM</h1>
-                        <button onClick={() => {setshowRequestForm(!showRequestForm);setblur(!blur)}}><ImCross /></button>
-                    </div>
-                    <div className="field">
-                        <label htmlFor="Name">Product name</label>
-                        <input type="text" name="Name" placeholder="product name" required/>
-                    </div>
-                    <div className="field">
-                        <label htmlFor="link">Product link</label>
-                        <input type="text" name="link" placeholder="product link" required/>
-                    </div>
-                    <div className="field">
-                        <label htmlFor="bank">Bank</label>
-                        <select name="bank">
-                            <option value="ICICI">ICICI</option>
-                            <option value="SBI">SBI</option>
-                            <option value="AXIS">AXIS</option>
-                        </select>
-                    </div>
-                    <button type="submit" onSubmit={(e)=> e.preventDefault()} >submit</button>
-                </form>
-            </div>
-        }
         {
             showDetails && 
             <div className="prod-details">
@@ -101,9 +73,8 @@ function Userdashboard({match}) {
                 
             </div>
         }
-        
         </>
     )
 }
 
-export default Userdashboard
+export default Admindashboard

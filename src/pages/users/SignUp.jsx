@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import "../assets/styles/signup.css";
 import SignUpImg from "../assets/img/SignUp.svg";
+import axios from "axios";
+import { api } from "../../Api/api";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function SignUp() {
-  const styleBtn = () => {
+  const [username, setusername] = useState('')
+  const [email, setemail] = useState('')
+  const [password, setpassword] = useState('')
+  
+  const styleBtn = (e) => {
+    e.preventDefault();
     setTimeout(() => {
       document.querySelector("#btn").classList.add("clickBtn");
     }, 0);
@@ -11,6 +20,23 @@ export default function SignUp() {
       document.querySelector("#btn").classList.remove("clickBtn");
     }, 200);
   };
+
+  const Register = async(e) => {
+    e.preventDefault();
+    const body = {username: username,email: email,password:password}
+
+    await axios.post(`${api}register/`, body)
+    .then((res) => {
+      if(res.status == 201){
+        toast("Success fully created account")
+        window.location = '/login'
+      }
+      else{
+        toast("some error occured")
+      }
+    })
+  }
+
   return (
     <>
       <div className="parent-box1">
@@ -24,30 +50,38 @@ export default function SignUp() {
              <a href="#/login"  className="login-header-text">Log in</a> 
             </div>
             <p className="login-text">SIGN UP</p>{" "}
-            <form action="" className="login-form">
+            <form action={Register} className="login-form">
               <div className="username  login-page-div">
-                <input type="text" name="username" id="" placeholder="Username"/>
+                <input type="text" required={true} 
+                onChange = {(e) => {setusername(e.target.value)}}
+                name="username" id="" placeholder="Username"/>
                 <i class="fa fa-user"></i>
               </div>
               <div className="email  login-page-div">
-                <input type="email" name="Email" id="" placeholder="Email" />
+                <input type="email" required={true} name="Email" id="" 
+                onChange = {(e) => {setemail(e.target.value)}}
+                placeholder="Email" />
                 <i class="fa fa-envelope-square"></i>
               </div>
               <div className="pass login-page-div">
                 <input
                   type="password"
                   name="Password"
+                  required={true}
                   id=""
                   placeholder="Password"
+                  onChange = {(e) => {setpassword(e.target.value)}}
                 />
                 <i class="fa fa-lock"></i>
               </div>
-              <button className="Login" onClick={styleBtn} id="btn">
+              <button className="Login" onClick={styleBtn,Register} id="btn">
               Sign up
               </button>
             </form>
           </div>
         </div>
+        <ToastContainer />
+
       </div>
     </>
   );
