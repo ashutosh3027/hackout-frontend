@@ -37,7 +37,7 @@ function Userdashboard({ match }) {
     <>
       <div className={`dashboard-main ${blur ? "mkblr" : ""}`}>
         <h1 className="user-name"> Welcome {user_data.username}</h1>
-        <div className="filter">
+        <div className="dashboard-box">   <div className="filter">
           <input
             type="text"
             placeholder="search by product name"
@@ -93,7 +93,8 @@ function Userdashboard({ match }) {
               </div>
             ))}
           </div>
-        </div>
+        </div></div>
+     
       </div>
       {showRequestForm && (
         <div className="requestForm">
