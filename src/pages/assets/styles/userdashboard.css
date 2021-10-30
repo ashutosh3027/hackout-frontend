@@ -1,0 +1,254 @@
+.dashboard-main {
+    max-width: 700px;
+    width: 100%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 80px 0px;
+}
+
+.dashboard-main .user-name {
+    margin: 20px 0px;
+}
+
+.userData {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 2px 6px 2px rgb(60, 64, 67, 0.15);
+    border-radius: 4px;
+    padding: 20px 5px;
+    min-height: 300px;
+}
+
+.filter {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin: 30px 0px;
+    padding: 5px 10px;
+    justify-content: space-around;
+}
+
+.filter input[type="text"] {
+    width: 70%;
+    outline: none;
+    box-sizing: content-box;
+    border: 1px solid black;
+    font-size: 16px;
+    padding: 2px 8px;
+}
+
+.filter button {
+    background: none;
+    font-size: 16px;
+    padding: 4px 8px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    border-radius: 2px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.filter button:hover {
+    box-shadow: 0 2px 6px 2px rgb(60, 64, 67, 0.15);
+}
+
+.requests {
+    width: 100%;
+}
+
+.request {
+    border: 1px solid rgb(187, 187, 187);
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 12px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.req-detail {
+    width: 60%;
+}
+
+.req-detail h2 {
+    font-size: 30px;
+    margin: 2px 0px 10px 0px;
+}
+
+.req-detail p {
+    font-size: 14px;
+}
+
+.req-detail span {
+    margin: 5px;
+    color: white;
+    border-radius: 6px;
+    padding: 2px;
+    font-family: monospace;
+}
+
+.success {
+    background-color: #007BFF;
+}
+
+.fail {
+    background-color: #DC3545;
+}
+
+.request button {
+    border: none;
+    outline: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.request .chat {
+    border: 1px solid black;
+    font-size: 16px;
+    padding: 2px 8px;
+    font-weight: bolder;
+    border-radius: 4px;
+}
+
+.request .chat svg {
+    position: relative;
+    top: 2px;
+}
+
+.request .icon {
+    font-size: 24px;
+    margin: 0px 10px;
+}
+
+.mkblr {
+    filter: blur(3px);
+}
+
+.prod-details {
+    max-width: 700px;
+    width: 100%;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 2px 6px 2px rgb(60, 64, 67, 0.15);
+    border-radius: 4px;
+    padding: 40px 20px;
+    padding-bottom: 20px;
+}
+
+.prod-details h1 {
+    text-align: center;
+    border-bottom: 2px solid black;
+}
+
+.prod-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.prod-details h3 {
+    margin: 12px 0px;
+}
+
+.prod-details h3 span {
+    color: white;
+    font-family: monospace;
+    padding: 4px;
+    border-radius: 2px;
+}
+
+.prod-details button {
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 16px 0px;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 4px 12px;
+}
+
+.requestForm {
+    max-width: 600px;
+    width: 100%;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 2px 6px 2px rgb(60, 64, 67, 0.15);
+    border-radius: 4px;
+    padding: 20px;
+}
+
+.requestForm button {
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.form-head {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.form-head button {
+    font-size: 24px;
+}
+
+.requestForm .field {
+    font-size: 16px;
+    margin: 10px 0px;
+}
+
+.field input[type="text"] {
+    width: 40%;
+    outline: none;
+    box-sizing: content-box;
+    border: 1px solid black;
+    font-size: 16px;
+    padding: 2px 8px;
+}
+
+.field select {
+    width: 40%;
+    outline: none;
+    box-sizing: content-box;
+    border: 1px solid black;
+    font-size: 16px;
+    padding: 2px 8px;
+}
+
+.field label {
+    font-weight: 600;
+    margin: 0px 15px 0px 0px;
+}
+
+button[type="submit"] {
+    background-color: #343A40;
+    color: white;
+    font-size: large;
+    padding: 4px 12px;
+    font-weight: bold;
+    margin: 20px 0px;
+    border-radius: 4px;
+}

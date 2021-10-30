@@ -1,0 +1,42 @@
+.chat-main {
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.messages {
+    height: 90%;
+    width: 70%;
+    border: 2px solid black;
+}
+
+.chat-head {
+    height: 90%;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.chat-det,
+.productDetails {
+    border: 2px solid black;
+    border-radius: 4px;
+    padding: 12px;
+}
+
+.chat-det h1,
+.productDetails h1 {
+    text-align: center;
+    border-bottom: 2px solid black;
+}
+
+.chat-det h3,
+.productDetails h3 {
+    margin: 10px 0px;
+}

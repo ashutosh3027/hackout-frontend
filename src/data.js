@@ -4,25 +4,29 @@ const user_data = {
     "All_Requests": [
         {
         "product_name": "Head phones",
+        "id":"smdckskdcksdc",
         "product_link": "Flipkart.com",
+        "bank":"ICICI",
         "status": true,
         "chat_id": "aimIswu92",
         "admin_details": {
             "admin_id": "i394neuIHS0",
             "admin_name": "admin"
             },
-        "dealStatus":"completed"
+        "dealStatus":false
         },
         {
         "product_name": "bags",
         "product_link": "Flipkart.com",
+        "id":"kdmckmaka",
+        "bank":"SBI",
         "status": false,
         "chat_id": "",
         "admin_details": {
             "admin_id": "",
             "admin_name": ""
             },
-        "dealStatus":"In progress"
+        "dealStatus":false
         },
     ]
 }
@@ -37,6 +41,7 @@ const admin_data = {
         "product_name": "Head phones",
         "product_link": "Flipkart.com",
         "status": true,
+        "bank":"ICICI",
         "chat_id": "aimIswu92",
         "dealStatus":"In progress"
         },
@@ -46,13 +51,17 @@ const admin_data = {
 const chat = {
     "chat_id":"aimIswu92",
     "Messages":[
-        {
+        {   
+            "id":1,
             "sent_by":"admin",
             "message":"Hello user"
         },
-        {
+        {   
+            "id":2,
             "sent_by":"user",
             "message":"Hello admin"
         },
     ]
 }
+
+export {user_data,admin_data,chat}
