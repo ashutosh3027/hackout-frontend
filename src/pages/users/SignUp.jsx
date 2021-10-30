@@ -11,7 +11,8 @@ export default function SignUp() {
   const [email, setemail] = useState('')
   const [password, setpassword] = useState('')
   
-  const styleBtn = (e) => {
+
+  const Register = async(e) => {
     e.preventDefault();
     setTimeout(() => {
       document.querySelector("#btn").classList.add("clickBtn");
@@ -19,10 +20,6 @@ export default function SignUp() {
     setTimeout(() => {
       document.querySelector("#btn").classList.remove("clickBtn");
     }, 200);
-  };
-
-  const Register = async(e) => {
-    e.preventDefault();
     const body = {username: username,email: email,password:password}
 
     await axios.post(`${api}register/`, body)
@@ -74,7 +71,7 @@ export default function SignUp() {
                 />
                 <i class="fa fa-lock"></i>
               </div>
-              <button className="Login" onClick={styleBtn,Register} id="btn">
+              <button className="Login" onClick={Register} id="btn">
               Sign up
               </button>
             </form>

@@ -8,17 +8,23 @@ import { api } from "../../Api/api";
 function Admin() {
   const [username, setusername] = useState('')
   const [password, setpassword] = useState('')
-  const styleBtn = (e)=>{
+  // const styleBtn = (e)=>{
+  //   e.preventDefault()
+  //     setTimeout(()=>{
+  //     document.querySelector('#btn').classList.add('clickBtn')
+  //     }, 0);
+  //     setTimeout(()=>{
+  //         document.querySelector('#btn').classList.remove('clickBtn')
+  //     }, 200);
+  // }
+  const Login = async(e) => {
     e.preventDefault()
-      setTimeout(()=>{
+    setTimeout(()=>{
       document.querySelector('#btn').classList.add('clickBtn')
       }, 0);
       setTimeout(()=>{
           document.querySelector('#btn').classList.remove('clickBtn')
       }, 200);
-  }
-  const Login = async(e) => {
-    e.preventDefault()
     const body = {
       username: username,
       password: password
@@ -62,7 +68,7 @@ function Admin() {
                 placeholder="Password" />
                 <i className="fa fa-lock"></i>
               </div>
-              <button className="Login" onClick={styleBtn,Login} id="btn">Log in</button>
+              <button className="Login" onClick={Login} id="btn">Log in</button>
             </form>
              <p className="login-footer">Don’t have an account?<a href="#/signUp">Sign up</a> </p>
           </div>
