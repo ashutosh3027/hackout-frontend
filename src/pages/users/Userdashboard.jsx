@@ -8,6 +8,7 @@ import "../assets/styles/userdashboard.css";
 import axios from 'axios'
 import { api } from '../../Api/api'
 import { toast } from 'react-toastify'
+import { chat } from "../../data";
 
 function Userdashboard({ match }) {
     const [user_data, setuser_data] = useState({
@@ -48,21 +49,27 @@ function Userdashboard({ match }) {
     const headers = {"x-access-token": localStorage.getItem("token") || null}
     await axios.get(`${api}product/user`,headers)
     .then((res) => {
-        console.log(res)
+        if(res.status == 200){
         let temp_data = user_data
         temp_data.All_Requests = res.data.products
         setuser_data(temp_data)
         setfilteredRequests(res.data.products)
+        }
+        else{
+            toast("some error occured")
+        }
         setloading(false)
     })
   },[])
 
-  const postProduct = async(req,res) => {
+  const postProduct = async(e) => {
+    e.preventDefault()
     setloading(true)
     const headers = {"x-access-token": localStorage.getItem("token") || null}
     const body = {product_name: productName,product_link: productLink,bank: bank}
     await axios.post(`${api}product/add`,body,headers)
     .then((res) => {
+        console.log(res)
         if(res.status == 200){
             toast("Successfully added")
         }
@@ -121,15 +128,13 @@ function Userdashboard({ match }) {
                     </span>
                   </p>
                 </div>
-                {request.status && (
                   <button
                     className="chat"
-                    onClick={handleChat}
+                    onClick={ handleChat}
                     datakey={request.chat_id}
                   >
                     Chat{"   "} <BiRightArrow />
                   </button>
-                )}
                 <button
                   className="icon"
                   onClick={() => {

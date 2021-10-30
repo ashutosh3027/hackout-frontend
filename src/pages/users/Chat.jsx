@@ -9,10 +9,8 @@ const link = 'http://localhost:3001';
 function Chat({match}) {
     const [messages, setmessages] = useState([])
     const [message, setmessage] = useState("");
-    const checkChat = (req_data) => {
-        return req_data.chat_id === match.params.chatId; 
-    }
-    const request = user_data.All_Requests.filter(checkChat)[0]
+
+    const request = user_data.All_Requests[0]
 
     useEffect(() => {
         socket = io(link);
