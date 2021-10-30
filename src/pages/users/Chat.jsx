@@ -38,7 +38,7 @@ function Chat({match}) {
             <div className="productDetails">
                 <h1>DETAILS</h1>
                 <h3>Product name : {request.product_name}</h3>
-                <h3>Product link : {request.product_link}</h3>
+                <h3>Product link : <a href={request.product_link} target="_blank">Link</a></h3>
                 <h3>Bank required : {request.bank}</h3>
             </div>
         </div>
