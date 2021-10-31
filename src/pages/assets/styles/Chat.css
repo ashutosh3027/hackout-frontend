@@ -54,6 +54,11 @@
     overflow-y: scroll;
 }
 
+form {
+    width: 100%;
+    padding-left: 5%;
+}
+
 ::-webkit-scrollbar {
     width: 14px;
 }
@@ -82,7 +87,7 @@
 }
 
 .sendMessage input[type="text"] {
-    width: 80%;
+    width: 70%;
     outline: none;
     box-sizing: content-box;
     border: 1px solid black;
@@ -92,7 +97,7 @@
 
 .sendMessage button {
     background: none;
-    width: 10%;
+    width: 20%;
     font-size: 16px;
     padding: 4px 8px;
     border: none;

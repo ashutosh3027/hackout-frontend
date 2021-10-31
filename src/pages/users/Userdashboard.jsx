@@ -28,14 +28,14 @@ function Userdashboard({ match }) {
     const [update, setupdate] = useState(false)
     const history = useHistory()
     let admin = false
-    if(localStorage.getItem("username") == "sa"){
+    if(localStorage.getItem("username") == "admin"){
       admin = true
     }
   
-    const handleChat = (e) => {
-    const chatId = e.target.getAttribute("datakey");
-    history.push(`/${match.params.userId}/dashboard/${chatId}`);
-  };
+    // const handleChat = (e) => {
+    // const chatId = e.target.getAttribute("datakey");
+    // history.push(`/${match.params.userId}/dashboard/${chatId}`);
+  // };
 
   const filterFucntion = ({ product_name }) => {
     return product_name.toLowerCase().indexOf(search.toLowerCase().trim()) > -1;
@@ -120,19 +120,20 @@ function Userdashboard({ match }) {
             onChange={(e) => setsearch(e.target.value)}
             value={search}
           />
-          <button
+          { !admin &&
+            <button
             onClick={() => {
               setshowRequestForm(!showRequestForm);
               setblur(!blur);
             }}
           >
             Request a Product
-          </button>
+          </button>}
         </div>
         <div className="userData">
           <div className="requests">
             {filteredRequests.length === 0 && (
-              <h2 style={{ color: "rgb(180 180 180)", textAlign: "center" }}>
+              <h2 style={{ color: "rgb(100 100 100)", textAlign: "center" }}>
                 No requests found!!!
               </h2>
             )}
@@ -142,19 +143,18 @@ function Userdashboard({ match }) {
                   <h2>{request.product_name}</h2>
                   <p className="status">
                     status :{" "}
-                    <span className={request.dealStatus ? "success" : "Pending"}>
+                    <span className={request.dealStatus ? "success" : "fail"}>
                       {request.dealStatus ? "Accepted" : "Pending"}
                     </span>
                   </p>
                 </div>
-                  <button
+                  {request.dealStatus && <button
                     className="chat"
-                    onClick={ handleChat}
-                    datakey={request.chat_id}
+                    onClick={() => history.push(`/${match.params.userId}/dashboard/${request.chat_id}`)}
                   >
                     Chat{"   "} <BiRightArrow />
-                  </button>
-                  {admin && 
+                  </button>}
+                  {admin && !request.dealStatus &&
                   <div >
                      <button
                     className="chat"
