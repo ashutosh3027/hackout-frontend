@@ -7,7 +7,7 @@ import { BiRightArrow } from "react-icons/bi";
 import "../assets/styles/userdashboard.css";
 import axios from 'axios'
 import { api } from '../../Api/api'
-import { toast } from 'react-toastify'
+import { toast, ToastContainer } from 'react-toastify'
 import { chat } from "../../data";
 
 function Userdashboard({ match }) {
@@ -26,6 +26,7 @@ function Userdashboard({ match }) {
     const [productName, setproductName] = useState('')
     const [productLink, setproductLink] = useState('')
     const [bank, setbank] = useState("ICIC")
+    const [update, setupdate] = useState(false)
     const history = useHistory()
   
     const handleChat = (e) => {
@@ -60,7 +61,7 @@ function Userdashboard({ match }) {
         }
         setloading(false)
     })
-  },[])
+  },[update])
 
   const postProduct = async(e) => {
     e.preventDefault()
@@ -77,6 +78,9 @@ function Userdashboard({ match }) {
             toast("Some error occured")
         }
     })
+    setshowRequestForm(false)
+    setblur(false)
+    setupdate(!update)
     setloading(false)
     }
 
@@ -211,6 +215,7 @@ function Userdashboard({ match }) {
           </button>
         </div>
       )}
+       <ToastContainer />
     </>
   );
 }
