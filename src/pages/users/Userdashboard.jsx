@@ -8,7 +8,6 @@ import "../assets/styles/userdashboard.css";
 import axios from 'axios'
 import { api } from '../../Api/api'
 import { toast, ToastContainer } from 'react-toastify'
-import { chat } from "../../data";
 
 function Userdashboard({ match }) {
     const [user_data, setuser_data] = useState({
