@@ -11,12 +11,13 @@ function Home() {
           <img src={shoppingImg} alt="" />
           <div className="intro">
             <span className="style-text">
-              Hey are you missing out a great deal just because you don’t have a
-              right credit or a debit card???
-            </span>{" "}
-            <br /> Just Relax….. Here is a solution - REBATE <br /> Rebate is a
+              Hey👋!!! <br /> Are you missing out a great deal just because you
+              don’t have a right credit or a debit card???
+            </span>
+            <br /> Just Relax….. <br /> Here is a solution - REBATE <br /> Rebate is a
             place where you can get additional discounts on your purchase👛💸
-            Interesting right!
+            with secure payments... <br />
+            Interesting right !!!!!
           </div>
         </div>
       </div>
