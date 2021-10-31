@@ -49,6 +49,10 @@
     margin: 0 5px;
     padding: 10px;
     text-align: justify;
+    background-color: aliceblue;
+    z-index: 1;
+    box-shadow: rgba(94, 94, 145, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border-radius: 10px;
 }
 .container-box {
     width: 100vw;
@@ -81,4 +85,10 @@
         flex-direction: column;
 
     }
+}
+.style-text{
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: normal;
 }
