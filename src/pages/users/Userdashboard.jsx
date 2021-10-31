@@ -15,6 +15,7 @@ function Userdashboard({ match }) {
         "user_id" : localStorage.getItem("user_id") || '',
         "All_Requests": []
     })
+    const [paid, setpaid] = useState(false)
     const [search, setsearch] = useState('')
     const [filteredRequests, setfilteredRequests] = useState([])
     const [showRequestForm, setshowRequestForm] = useState(false)
@@ -107,6 +108,16 @@ function Userdashboard({ match }) {
             </div>
         )
     }
+    const payment = async(req,res) => {
+      await axios.get(`${api}pay`)
+      .then((res) => {
+        if(res.status == 200){
+          setpaid(true)
+          toast("Successfully paid")
+           postProduct()
+        }
+      })
+  }
 
 
   return (
@@ -209,7 +220,20 @@ function Userdashboard({ match }) {
                             <option value="AXIS">AXIS</option>
                         </select>
                     </div>
-                    <button type="submit" onClick ={postProduct } >submit</button>
+                    
+                    <div className="field">
+                        <label htmlFor="bank-account">Payment-Method</label>
+                         <div className="details">
+                          <label htmlFor="card">Cerdit card</label>
+                         <input type="text" name="card number" className="input-feild"/>
+                         <br />
+                         <label htmlFor="card">CVV</label>
+                         <input type="text" name="CVV" className="input-feild"/>
+                         </div>
+                        
+                    </div>
+
+                    <button type="submit" onClick ={payment} >submit</button>
                 </form>
             </div>
         }
