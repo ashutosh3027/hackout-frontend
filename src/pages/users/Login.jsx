@@ -4,6 +4,7 @@ import loginImg from "../assets/img/login-img.svg";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import { api } from "../../Api/api";
+import {useHistory} from 'react-router-dom'
 
 function Admin() {
   const [username, setusername] = useState('')
@@ -17,6 +18,7 @@ function Admin() {
   //         document.querySelector('#btn').classList.remove('clickBtn')
   //     }, 200);
   // }
+  const history = useHistory()
   const Login = async(e) => {
     e.preventDefault()
     setTimeout(()=>{
@@ -36,6 +38,7 @@ function Admin() {
         localStorage.setItem("token", res.data.token)
         localStorage.setItem("username", username)
         localStorage.setItem("id", res.data._id)
+        history.push(`/${username}/dashboard`)
       }
       else{
         toast("some error occured")

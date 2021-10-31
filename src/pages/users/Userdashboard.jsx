@@ -78,6 +78,8 @@ function Userdashboard({ match }) {
             toast("Some error occured")
         }
     })
+    setshowRequestForm(false)
+    setblur(false)
     setupdate(!update)
     setloading(false)
     }
