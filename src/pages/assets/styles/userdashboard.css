@@ -9,6 +9,7 @@
     justify-content: center;
     flex-direction: column;
 }
+
 .user-name {
     background-color: #637081;
     background-image: linear-gradient(315deg, #637081 0%, #7c98b3 74%);
@@ -34,6 +35,7 @@
         background-size: 100%;
     }
 }
+
 @keyframes rainbow-text-simple-animation {
     0% {
         background-size: 100%;
@@ -45,6 +47,7 @@
         background-size: 650%;
     }
 }
+
 .dashboard-main h1 {
     font-family: "Archivo Black", sans-serif;
     font-weight: normal;
@@ -55,6 +58,7 @@
     margin-right: auto;
     cursor: pointer;
 }
+
 .userData {
     width: 100%;
     display: flex;
@@ -67,7 +71,6 @@
     box-shadow: 0 2px 6px 2px rgb(60, 64, 67, 0.15);
     border-radius: 4px;
     padding: 20px 5px;
-    
 }
 
 .filter {
@@ -84,7 +87,6 @@
     box-sizing: content-box;
     border: 1px solid black;
     font-size: 16px;
-    border-radius: 10px 0 0 10px;
     padding: 10px;
     box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
     border: 2px solid white;
@@ -162,8 +164,6 @@
     outline: none;
     background: none;
     outline: none;
-   
-
     cursor: pointer;
 }
 
@@ -176,6 +176,7 @@
     font-weight: bolder;
     border-radius: 4px;
 }
+
 .request .chat:hover {
     box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
 }
@@ -312,27 +313,31 @@ button[type="submit"] {
     margin: 20px 0px;
     border-radius: 4px;
 }
-.dashboard-box{
+
+.dashboard-box {
     width: 50vw;
 }
+
 @media (max-width:1100px) {
-    .dashboard-box{
+    .dashboard-box {
         width: 70vw;
     }
 }
+
 @media (max-width:700px) {
-    .dashboard-box{
+    .dashboard-box {
         width: 85vw;
     }
-    .dashboard-main h1{
+    .dashboard-main h1 {
         font-size: 3rem;
     }
 }
+
 @media (max-width:500px) {
-    .dashboard-box{
+    .dashboard-box {
         width: 98vw;
     }
-    .filter input[type="text"]{
+    .filter input[type="text"] {
         width: 60%;
     }
     .filter button {
