@@ -8,7 +8,6 @@ import "../assets/styles/userdashboard.css";
 import axios from 'axios'
 import { api } from '../../Api/api'
 import { toast, ToastContainer } from 'react-toastify'
-import { chat } from "../../data";
 
 function Userdashboard({ match }) {
     const [user_data, setuser_data] = useState({
@@ -28,6 +27,10 @@ function Userdashboard({ match }) {
     const [bank, setbank] = useState("ICIC")
     const [update, setupdate] = useState(false)
     const history = useHistory()
+    let admin = false
+    if(localStorage.getItem("username") == "sa"){
+      admin = true
+    }
   
     const handleChat = (e) => {
     const chatId = e.target.getAttribute("datakey");
@@ -51,6 +54,7 @@ function Userdashboard({ match }) {
     await axios.get(`${api}product/user`,headers)
     .then((res) => {
         if(res.status == 200){
+          console.log(res)
         let temp_data = user_data
         temp_data.All_Requests = res.data.products
         setuser_data(temp_data)
@@ -83,6 +87,17 @@ function Userdashboard({ match }) {
     setupdate(!update)
     setloading(false)
     }
+
+    const handleProduct = async(id) => {
+      console.log(id)
+      const headers = {"x-access-token": localStorage.getItem("token") || null}
+      const body = {dealStatus: "success"} 
+      await axios.put(`${api}product/update/${id}`,headers,body)
+      .then((res) => {
+        console.log(res)
+      })
+      setupdate(!update)
+    } 
 
 
     if(loading){
@@ -127,8 +142,8 @@ function Userdashboard({ match }) {
                   <h2>{request.product_name}</h2>
                   <p className="status">
                     status :{" "}
-                    <span className={request.status ? "success" : "fail"}>
-                      {request.status ? "Accepted" : "Pending..."}
+                    <span className={request.dealStatus ? "success" : "Pending"}>
+                      {request.dealStatus ? "Accepted" : "Pending"}
                     </span>
                   </p>
                 </div>
@@ -139,6 +154,17 @@ function Userdashboard({ match }) {
                   >
                     Chat{"   "} <BiRightArrow />
                   </button>
+                  {admin && 
+                  <div >
+                     <button
+                    className="chat"
+                    onClick={() =>  handleProduct(request._id)}
+                    datakey={request._id}
+                  >
+                    Accept{"   "} <BiRightArrow />
+                  </button>
+                  </div>
+                  }
                 <button
                   className="icon"
                   onClick={() => {

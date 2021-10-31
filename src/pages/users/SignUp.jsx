@@ -5,12 +5,13 @@ import axios from "axios";
 import { api } from "../../Api/api";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useHistory } from "react-router-dom";
 
 export default function SignUp() {
   const [username, setusername] = useState('')
   const [email, setemail] = useState('')
   const [password, setpassword] = useState('')
-  
+  const history = useHistory()
 
   const Register = async(e) => {
     e.preventDefault();
@@ -26,7 +27,7 @@ export default function SignUp() {
     .then((res) => {
       if(res.status === 201){
         toast("Success fully created account")
-        window.location = '/login'
+        history.push('/login')
       }
       else{
         toast("some error occured")
