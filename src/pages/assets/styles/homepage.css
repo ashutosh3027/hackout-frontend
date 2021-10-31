@@ -47,8 +47,14 @@
     width: 40%;
     height: auto;
     margin: 0 5px;
+    font-size: 29px;
     padding: 10px;
     text-align: justify;
+    background-color: aliceblue;
+    background: none;
+    z-index: 1;
+    box-shadow: rgba(94, 94, 145, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border-radius: 10px;
 }
 .container-box {
     width: 100vw;
@@ -81,4 +87,10 @@
         flex-direction: column;
 
     }
+}
+.style-text{
+    color: #0a3687;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: normal;
 }

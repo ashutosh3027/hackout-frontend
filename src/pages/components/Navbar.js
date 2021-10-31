@@ -1,5 +1,6 @@
 import React from 'react'
 import '../assets/styles/navbar.css'
+import logo from '../assets/img/logo1.svg'
 import { useState } from 'react'
 import { useEffect } from 'react';
 export default function Navbar() {
@@ -19,7 +20,7 @@ export default function Navbar() {
     return (
         <>
             <div className="navbar">
-                <div className="logo"><h1 id="logo" >Rebate</h1></div>
+                <div className="logo"><img src={logo} alt="" /><h1>Rebate</h1></div>
                 <ul>
                     <li className="nav_items"><a href="#/"> Home</a></li>
                     {!(token)&&<li className="nav_items"><a href="#/login"> Log in</a></li>}
